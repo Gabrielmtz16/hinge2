@@ -1,0 +1,101 @@
+#VRML_SIM R2019a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.6304206930563676 0.7576721088194543 0.16882750156123913 0.6413558300457106
+  position 1.5625697188371896 1.8174782813017627 2.0184404612203988
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+}
+Solid {
+  translation 0 0.5 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.9607843137254902 0.4745098039215686 0
+        metalness 0
+      }
+      geometry DEF G_CYL Cylinder {
+        height 1
+        radius 0.15
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0.505 0
+      }
+      endPoint Solid {
+        translation 0.24 0.505 0
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.8 0 0
+              metalness 0
+            }
+            geometry Box {
+              size 0.5 0.01 0.1
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 0 1
+              anchor 0.25 0 0
+              staticFriction 0.01
+            }
+            endPoint Solid {
+              translation 0.3 0 0
+              rotation 0 0 1 0
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.5411764705882353 0.8862745098039215 0.20392156862745098
+                    metalness 0
+                  }
+                  geometry DEF G_TABLE Box {
+                    size 0.1 0.01 0.1
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    anchor 0.5 0 0
+                  }
+                  endPoint Solid {
+                    translation 0.12500237039308726 -3.797970904440007e-08 0
+                    rotation 1 0 0 0
+                    children [
+                      Shape {
+                        appearance PBRAppearance {
+                          baseColor 0 0 0
+                        }
+                        geometry DEF B_TABLE Box {
+                          size 0.15 0.01 0.1
+                        }
+                      }
+                    ]
+                    boundingObject USE B_TABLE
+                    physics Physics {
+                    }
+                  }
+                }
+              ]
+              boundingObject USE G_TABLE
+              physics Physics {
+              }
+            }
+          }
+        ]
+        boundingObject DEF P_TABLE Box {
+          size 0.5 0.01 0.1
+        }
+        physics Physics {
+        }
+      }
+    }
+  ]
+  boundingObject USE G_CYL
+}
